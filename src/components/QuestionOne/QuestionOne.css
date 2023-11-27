@@ -1,0 +1,20 @@
+.answers {
+    list-style-type: none; 
+    height: 100px;
+    height: 130px;
+    background-color: rgb(245, 245, 245);
+  }
+
+ .index {
+    margin-right: 20px; 
+  }
+  
+  .response {
+    flex-grow: 1; 
+    margin-right: 10px; 
+  }
+  
+  .checkbox {
+    margin-left: 80%;
+  }
+ 
