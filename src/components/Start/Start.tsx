@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './ButtonHome.css';
+import './start.css';
 
-const ButtonHome: React.FC = () => {
+const Start: React.FC = () => {
   return (
     <div className='Home'>
       <Link to='/questionnaire'>
@@ -12,4 +12,4 @@ const ButtonHome: React.FC = () => {
   )
 }
 
-export default ButtonHome;
+export default Start;

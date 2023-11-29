@@ -2,16 +2,16 @@ import React from "react";
 import "../ButtonSend/ButtonSend.css"
 
 
-interface SendProps {
-  disabled: boolean
+export type SendProps ={
+  disabled?: boolean
+  handleClick?: () => void
 }
 
-
-const Send: React.FC <SendProps> = ({disabled}) => {
-  return(
-    <button className="send" disabled={disabled}>
+const Send: React.FC<SendProps> = ({ disabled , handleClick }) => {
+  return (
+    <button className="send" disabled={disabled} onClick={handleClick}>
       SEND
-      </button>
+    </button>
   )
 }
 

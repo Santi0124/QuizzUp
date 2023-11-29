@@ -1,6 +1,9 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import React from "react"
-import Questionnarie from "../../src/components/Questionnarie/Questionnarie"
+import Send from "../../src/components/ButtonSend/ButtonSend"
+import { SendProps } from "../../src/components/ButtonSend/ButtonSend";
+import {vi} from "vitest";
+
 
 describe('Question', () => {
   it("When u have a clicked the correct answer is send", () => {
@@ -9,27 +12,35 @@ describe('Question', () => {
     expect(send).toBeInTheDocument()
   })
   it('The button is disabled where the question is empty', () => {
-    SUT.render()
+    SUT.render({disabled:true})
     const send = SUT.send()
     expect(send).toBeDisabled()
   })
-  it('The button will be enabled when a question is answered', () => {
-    SUT.render()
-    const send = SUT.send()
-    fireEvent.click(SUT.checkbox())
-    expect(send).toBeEnabled()
+  it('when click in send call a handle', () => {
+    SUT.render({
+      handleClick: SUT.mockOnClick,
+      disabled: false
+    })
+    const sendClick = SUT.send()
+    fireEvent.click(sendClick)
+    expect(SUT.mockOnClick).toHaveBeenCalledTimes(1)
   })
 })
 
 
 class SUT {
-  static render() {
-    return render(<Questionnarie />)
+
+  static mockOnClick = vi.fn()
+
+  static render(props: SendProps = {}) {
+    return render(
+      <Send disabled={props.disabled} handleClick={props.handleClick} />
+    )
   }
   static send() {
     return screen.getByRole("button", { name: "SEND" })
   }
-  static checkbox(){
-    return screen.getByRole('checkbox',{name: "checkbox" })
+  static checkbox() {
+    return screen.getByRole('checkbox', { name: "A" })
   }
 }

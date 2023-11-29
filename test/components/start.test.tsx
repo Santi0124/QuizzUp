@@ -1,9 +1,8 @@
 import { render, screen, fireEvent } from "@testing-library/react"
 import React from "react"
 import { BrowserRouter } from "react-router-dom"
-import ButtonHome from "../../src/components/ButtonHome/ButtonHome"
 import Questionnarie from "../../src/components/Questionnarie/Questionnarie"
-
+import Start from "../../src/components/Start/Start"
 
 describe("Starting the quizz", () => {
   beforeEach(() => {
@@ -27,7 +26,7 @@ class SUT {
   static render() {
     return render(
       <BrowserRouter>
-        <ButtonHome />
+        <Start />
         <Questionnarie />
       </BrowserRouter>
     )
@@ -36,6 +35,6 @@ class SUT {
     return screen.getByRole("button", { name: "Start Test" })
   }
   static getQuestionnaireTitle() {
-    return screen.getByText(/questionnarie/i);
+    return screen.getByText("Quizz")
   }
 }

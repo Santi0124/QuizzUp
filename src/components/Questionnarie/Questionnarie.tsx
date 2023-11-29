@@ -1,12 +1,28 @@
 import React from "react";
-import "../Questionnarie/Questionnarie.css"
-import QuestionOne from "../QuestionOne/QuestionOne";
+import "../Questionnarie/questionnarie.css"
+import Question from "../Question/Question";
+import Send from "../ButtonSend/ButtonSend";
 
-const Questionnarie: React.FC = () => {
+export type QuestionnarieProps = {
+  prompt?: string,
+  title?: string
+  handleClick?: () => void
+  disabled?:boolean
+}
+
+const Questionnarie: React.FC<QuestionnarieProps> = () => {
+  const handleClick = () => {
+    console.log("Next Quizz")
+  }
+
+  const title: string = 'Quizz'
+  const prompt = "¿Cuál es el operador lógico AND en muchos lenguajes de programación?"
+
   return (
     <div className="questionnarie">
-      <h1 className="title">QuestionnarieOne</h1>
-      <QuestionOne/>
+      <h1 className="title">{title}</h1>
+      <h2>{prompt}</h2>
+      <Question promt={""} handleClick={handleClick}/>
     </div>
   )
 }
