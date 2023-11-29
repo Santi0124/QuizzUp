@@ -1,15 +1,25 @@
 import React from "react";
-import "../ButtonSend/ButtonSend.css"
+import "../ButtonSend/buttonSend.css"
 
 
-export type SendProps ={
+export type SendProps = {
   disabled?: boolean
   handleClick?: () => void
 }
 
-const Send: React.FC<SendProps> = ({ disabled , handleClick }) => {
+const Send: React.FC<SendProps> = ({ disabled, handleClick  }) => {
+  const ButtonSendDisabled = !disabled 
+  const composeClassName = () => {
+    let result = !disabled ? 'send' : 'sendDisabled'
+    if(ButtonSendDisabled) return 'send'
+    return result
+  }
+
   return (
-    <button className="send" disabled={disabled} onClick={handleClick}>
+    <button 
+    className={composeClassName()}
+    disabled={disabled}
+    onClick={handleClick}>
       SEND
     </button>
   )
