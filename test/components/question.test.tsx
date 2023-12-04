@@ -1,15 +1,10 @@
-import {  fireEvent, render, screen } from "@testing-library/react"
+import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import React from "react"
 import Question from "../../src/components/Question/Question"
 import userEvent from "@testing-library/user-event"
 
 
 describe('Question', () => {
-  // it('Has a prompt', () => {
-  //   SUT.render()
-  //   const propmt = SUT.propmt()
-  //   expect(propmt).toBeInTheDocument()
-  // })
   it('renders four possible answers', () => {
     SUT.render()
     const answersItems = SUT.items()
@@ -20,12 +15,12 @@ describe('Question', () => {
     const checkboxItems = SUT.checkbox()
     expect(checkboxItems).toHaveLength(4)
   })
-  // it('When you can check and answer', async  () => {
-  //   SUT.render()
-  //   const secondAnswer= SUT.secondAnswer()
-  //   await userEvent.click(secondAnswer)
-  //   expect(secondAnswer.click()).toBeChecked()
-  // })
+  it('When you can check and answer', async () => {
+    SUT.render()
+    const secondAnswer = SUT.secondAnswer()
+     fireEvent.click(secondAnswer)
+    expect(secondAnswer).toBeChecked()
+  })
 })
 
 
@@ -45,7 +40,7 @@ class SUT {
   static send() {
     return screen.getByRole("button", { name: "SEND" })
   }
-  static secondAnswer(){
-    return screen.getByRole('checkbox', {name:'A'})
+  static secondAnswer() {
+    return screen.getByRole('checkbox', { name: 'A' })
   }
 }

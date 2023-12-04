@@ -1,20 +1,31 @@
-.answers {
-    list-style-type: none; 
-    height: 100px;
-    height: 130px;
-    background-color: rgb(245, 245, 245);
-  }
+.index {
+  background-color: rgba(129, 17, 173, 0.39);
+  color: white;
+  width: 60px;
+  height: 60px;
+}
 
- .index {
-    margin-right: 20px; 
-  }
-  
-  .response {
-    flex-grow: 1; 
-    margin-right: 10px; 
-  }
-  
-  .checkbox {
-    margin-left: 80%;
-  }
- 
+.response {
+  flex: 1;
+  padding: 10px;
+  color: rgb(0, 0, 0);
+  text-align: center;
+}
+
+.answers {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+
+.answerBox {
+  background-color: #ffffff;
+  border-radius: 25px;
+  margin-bottom: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  align-content: flex-end ;
+
+}

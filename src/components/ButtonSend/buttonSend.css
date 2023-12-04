@@ -1,19 +1,19 @@
 .send {
-    font-size: 15px;
-    padding: 6px 15px;
-    background-color: #6c3cba;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 25px;
+  font-size: 15px;
+  padding: 6px 15px;
+  background-color: #6c3cba;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 25px;
 }
 
 .sendDisabled {
-    font-size: 15px;
-    padding: 6px 15px;
-    background-color: #dac3fd;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 25px;
+  font-size: 15px;
+  padding: 6px 15px;
+  background-color: #dac3fd;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 25px;
 }

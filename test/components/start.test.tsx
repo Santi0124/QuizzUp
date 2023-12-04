@@ -1,34 +1,35 @@
 import { render, screen, fireEvent } from "@testing-library/react"
 import React from "react"
-import { BrowserRouter } from "react-router-dom"
 import Questionnarie from "../../src/components/Questionnarie/Questionnarie"
 import Start from "../../src/components/Start/Start"
+import { vi } from "vitest"
 
 describe("Starting the quizz", () => {
-  beforeEach(() => {
-    SUT.render()
-  })
+
+  const mockNavigate = vi.fn()
+  vi.mock('@reach/router', () => ({
+    navigate: mockNavigate,
+  }))
 
   it("renders the start button", () => {
+    SUT.render()
     const startButton = SUT.startButton()
     expect(startButton).toBeInTheDocument()
   })
 
   it("navigates to the questionnaire when the button is clicked", () => {
+    SUT.render()
     const startButton = SUT.startButton()
     fireEvent.click(startButton)
-    const questionnaireTitle = SUT.getQuestionnaireTitle()
-    expect(questionnaireTitle).toBeInTheDocument()
+    expect(mockNavigate).toHaveBeenCalledTimes(1)
+    expect(mockNavigate).toHaveBeenNCalledWith('/questionnarie')
   })
 })
 
 class SUT {
   static render() {
     return render(
-      <BrowserRouter>
         <Start />
-        <Questionnarie />
-      </BrowserRouter>
     )
   }
   static startButton() {

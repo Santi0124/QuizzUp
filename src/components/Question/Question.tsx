@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 import "./question.css"
-import Send from "../ButtonSend/ButtonSend";
+import Send from "../ButtonSend/ButtonSend"
 
 type options = Record<string, string>
 

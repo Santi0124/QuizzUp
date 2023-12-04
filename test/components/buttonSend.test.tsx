@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import React from "react"
 import Send from "../../src/components/ButtonSend/ButtonSend"
-import { SendProps } from "../../src/components/ButtonSend/ButtonSend";
-import {vi} from "vitest";
+import { SendProps } from "../../src/components/ButtonSend/ButtonSend"
+import {vi} from "vitest"
 
 
 describe('Question', () => {
