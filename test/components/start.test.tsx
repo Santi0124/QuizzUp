@@ -3,13 +3,15 @@ import React from "react"
 import Questionnarie from "../../src/components/Questionnarie/Questionnarie"
 import Start from "../../src/components/Start/Start"
 import { vi } from "vitest"
+import { BrowserRouter, useNavigate } from "react-router-dom"
 
 describe("Starting the quizz", () => {
 
-  const mockNavigate = vi.fn()
-  vi.mock('@reach/router', () => ({
-    navigate: mockNavigate,
+  const spy = vi.fn()
+  vi.mock('react-router-dom', () => ({
+    useNavigate: () => spy
   }))
+
 
   it("renders the start button", () => {
     SUT.render()
@@ -21,15 +23,18 @@ describe("Starting the quizz", () => {
     SUT.render()
     const startButton = SUT.startButton()
     fireEvent.click(startButton)
-    expect(mockNavigate).toHaveBeenCalledTimes(1)
-    expect(mockNavigate).toHaveBeenNCalledWith('/questionnarie')
+    expect(spy).toHaveBeenCalled()
+    expect(spy).toHaveBeenNCalledWith('/questionnarie')
   })
 })
 
 class SUT {
   static render() {
     return render(
+      <>
         <Start />
+        <Questionnarie />
+      </>
     )
   }
   static startButton() {

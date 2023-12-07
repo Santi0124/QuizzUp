@@ -13,7 +13,7 @@ const Questionnarie: React.FC<QuestionnarieProps> = () => {
   const handleClick = () => {
     console.log("Next Quizz")
   }
-
+  
   const title: string = 'Quizz'
   const prompt: string = "¿Cuál es el operador lógico AND en muchos lenguajes de programación?"
 

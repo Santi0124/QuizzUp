@@ -1,6 +1,20 @@
-html{
-  background-color: rgb(250, 247, 247);
+html {
+  background-color: rgb(240, 212, 247);
 }
 
-body{
+
+header{
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  justify-content: space-between;
+  width: 60%;
+  height: 100px;
+  background-color: rgba(213, 188, 253, 0.456);
+}
+
+body {
+  font-family: Arial, sans-serif; 
+  margin: 0; 
+  padding: 0; 
 }
