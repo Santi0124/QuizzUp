@@ -5,11 +5,11 @@ import Send from "../ButtonSend/ButtonSend"
 type options = Record<string, string>
 
 export type QuestionProps = {
-  promt?: string,
+  prompt: string,
   handleClick?: () => void
 }
 
-const Question: React.FC<QuestionProps> = ({handleClick}) => {
+const Question: React.FC<QuestionProps> = ({ handleClick, prompt }) => {
 
   const [selected, setSelected] = useState<string>('')
 
@@ -27,6 +27,7 @@ const Question: React.FC<QuestionProps> = ({handleClick}) => {
   return (
     <div>
       <ul className="answers">
+        <h2>{prompt}</h2>
         {Object.entries(fourAnswers).map(([index, response]) => (
           <li key={index} className="answerBox">
             <p>

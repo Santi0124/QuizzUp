@@ -1,8 +1,8 @@
 import { render, screen, fireEvent } from "@testing-library/react"
 import React from "react"
-import Questionnarie from "../../src/components/Questionnarie/Questionnarie"
+import Questionarie from "../../src/components/Questionarie/Questionarie"
 
-describe('Questionnarie', () => {
+describe('Questionarie', () => {
   it('Has a prompt', () => {
     SUT.render()
     const propmt = SUT.propmt()
@@ -17,7 +17,7 @@ describe('Questionnarie', () => {
 
 class SUT {
   static render() {
-    return render(<Questionnarie />)
+    return render(<Questionarie />)
   }
   static title() {
     return screen.getByRole('heading', { name: "Quizz" })

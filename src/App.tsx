@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
 import Start from './components/Start/Start';
-import Questionnarie from './components/Questionnarie/Questionnarie';
+import Questionarie from './components/Questionarie/Questionarie';
 import "../src/styles/index.css"
 
 const App: React.FC = () => {
@@ -9,7 +9,7 @@ const App: React.FC = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Start />} />
-          <Route path="/questionnaire" element={<Questionnarie />} />
+          <Route path="/questionnaire" element={<Questionarie />} />
         </Routes>
       </BrowserRouter>
   )
