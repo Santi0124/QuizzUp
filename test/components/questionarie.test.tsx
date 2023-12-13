@@ -23,6 +23,6 @@ class SUT {
     return screen.getByRole('heading', { name: "Quizz" })
   }
   static propmt() {
-    return screen.getByRole('heading', { name: "¿Cuál es el operador lógico AND en muchos lenguajes de programación?" })
+    return screen.getByRole('heading', { name: "Which is the hull NO. of the Fletcher class destroyer Fletcher?" })
   }
 }

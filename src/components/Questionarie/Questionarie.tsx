@@ -20,7 +20,6 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
   const retrieveQuestions = async () => {
     const result = await getQuestions()
     console.log(result);
-
     setQuestions(result)
   }
   const handleClick = () => {
@@ -31,7 +30,7 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
   return (
     <div className="questionarie">
       <p><h1 className="title">{title}</h1></p>
-      <Question prompt="la pregunta" handleClick={handleClick} />
+      <Question prompt="Which is the hull NO. of the Fletcher class destroyer Fletcher?" handleClick={handleClick} />
     </div>
   )
 }

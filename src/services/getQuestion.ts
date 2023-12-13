@@ -1,6 +1,8 @@
+import { Params } from "../types/Params"
+
 const apiUrl = "https://opentdb.com/api.php"
 
-async function getQuestions(): Promise<any> {
+async function getQuestions(): Promise<Params | undefined> {
   const params = {
     amount: "10",
     category: "23",
