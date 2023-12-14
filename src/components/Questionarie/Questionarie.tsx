@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import "../Questionarie/questionarie.css"
 import Question from "../Question/Question"
 import getQuestions from "../../services/getQuestion"
+import { Questions } from "../../types/Questions"
 
 export type QuestionarieProps = {
   prompt?: string,
@@ -12,14 +13,14 @@ export type QuestionarieProps = {
 
 const Questionarie: React.FC<QuestionarieProps> = () => {
 
-  const [questions, setQuestions] = useState<Array<any>>([])
+  const [questions, setQuestions] = useState<Questions[]>([])
   useEffect(() => {
     retrieveQuestions()
   }, [])
 
   const retrieveQuestions = async () => {
     const result = await getQuestions()
-    console.log(result);
+    console.log(result)
     setQuestions(result)
   }
   const handleClick = () => {

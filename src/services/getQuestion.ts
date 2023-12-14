@@ -1,8 +1,8 @@
-import { Params } from "../types/Params"
+import { Questions } from "../types/Questions"
 
 const apiUrl = "https://opentdb.com/api.php"
 
-async function getQuestions(): Promise<Params | undefined> {
+async function getQuestions(): Promise<Questions[]> {
   const params = {
     amount: "10",
     category: "23",
@@ -16,6 +16,7 @@ async function getQuestions(): Promise<Params | undefined> {
     return data
   } catch (error) {
     console.error('Error getting questions', error)
+    return []
   }
 }
 
