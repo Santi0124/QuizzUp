@@ -7,18 +7,27 @@ type options = Record<string, string>
 export type QuestionProps = {
   prompt: string,
   handleClick?: () => void
+  options: options
 }
 
-const Question: React.FC<QuestionProps> = ({ handleClick, prompt }) => {
+const Question: React.FC<QuestionProps> = ({ handleClick, prompt, options }) => {
 
   const [selected, setSelected] = useState<string>('')
 
   const fourAnswers: options = {
-    "A": '&&',
-    "B": '||',
-    "C": '!',
-    "D": '%',
+    "A": options.A,
+    "B": options.B,
+    "C": options.C,
+    "D": options.D,
   }
+
+  let keyArrays = Object.entries(fourAnswers)
+
+  const shuffle = (keyArrays: Array<[string, string]>) => {
+    keyArrays.sort(() => Math.random() - 0.5)
+  }
+
+  shuffle(keyArrays)
 
   const isChecked = (index: string): boolean => {
     return index === selected
@@ -28,7 +37,7 @@ const Question: React.FC<QuestionProps> = ({ handleClick, prompt }) => {
     <div>
       <ul className="answers">
         <h2>{prompt}</h2>
-        {Object.entries(fourAnswers).map(([index, response]) => (
+        {keyArrays.map(([index, response]) => (
           <li key={index} className="answerBox">
             <p>
               <span className="index">{index}.</span>

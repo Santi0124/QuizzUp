@@ -6,7 +6,6 @@ import "../src/styles/index.css"
 
 const App: React.FC = () => {
   return (
-    <>
       <BrowserRouter>
         <Routes>
           <Route
@@ -17,7 +16,6 @@ const App: React.FC = () => {
             element={<Questionarie />} />
         </Routes>
       </BrowserRouter>
-    </>
   )
 }
 
