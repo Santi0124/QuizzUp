@@ -15,7 +15,7 @@ async function getQuestions(): Promise<Array<QuestionData>> {
   try {
     const response = await fetch(url)
     const data = await response.json()
-    console.log(data);
+    console.log(data)
     return data.results
   } catch (error) {
     console.error('Error getting questions', error)

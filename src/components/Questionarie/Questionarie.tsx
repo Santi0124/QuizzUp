@@ -37,8 +37,8 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
     let result: QuestionData = questions[0]
     if (!result) result = {
       question: '',
-      correct_answers: '',
-      incorrect_answers: '',
+      correct_answer: '',
+      incorrect_answers:['','',''],
     }
     return result
   }
@@ -49,14 +49,8 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
     <div className="questionarie">
       <h1 className="title">{title}</h1>
       <Question
-        prompt={first().question}
+        data={first()}
         handleClick={handleClick}
-        options={{
-          A: first().correct_answers,
-          B: first().incorrect_answers[0],
-          C: first().incorrect_answers[1],
-          D: first().incorrect_answers[2],
-        }}
       />
     </div>
   )

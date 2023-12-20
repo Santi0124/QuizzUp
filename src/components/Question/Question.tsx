@@ -1,33 +1,35 @@
 import React, { useState } from "react"
 import "./question.css"
 import Send from "../ButtonSend/ButtonSend"
+import { QuestionData } from "../../types/Questions"
 
 type options = Record<string, string>
 
 export type QuestionProps = {
-  prompt: string,
   handleClick?: () => void
-  options: options
+  data: QuestionData
 }
 
-const Question: React.FC<QuestionProps> = ({ handleClick, prompt, options }) => {
+const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
 
   const [selected, setSelected] = useState<string>('')
 
+  const options = [data.correct_answer, ...data.incorrect_answers]
+
   const fourAnswers: options = {
-    "A": options.A,
-    "B": options.B,
-    "C": options.C,
-    "D": options.D,
+    "A": options[0],
+    "B": options[1],
+    "C": options[2],
+    "D": options[3]
   }
 
-  let keyArrays = Object.entries(fourAnswers)
+  let answer = Object.entries(fourAnswers)
 
-  const shuffle = (keyArrays: Array<[string, string]>) => {
-    keyArrays.sort(() => Math.random() - 0.5)
+  const shuffle = (answers: Array<[string, string]>) => {
+    answers.sort(() => Math.random() - 0.5)
   }
 
-  shuffle(keyArrays)
+  shuffle(answer)
 
   const isChecked = (index: string): boolean => {
     return index === selected
@@ -36,11 +38,10 @@ const Question: React.FC<QuestionProps> = ({ handleClick, prompt, options }) => 
   return (
     <div>
       <ul className="answers">
-        <h2>{prompt}</h2>
-        {keyArrays.map(([index, response]) => (
+        <h2>{data.question}</h2>
+        {answer.map(([index, response]) => (
           <li key={index} className="answerBox">
             <p>
-              <span className="index">{index}.</span>
               <span className="response">{response}</span>
               <input
                 type="checkbox"
