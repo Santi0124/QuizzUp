@@ -1,10 +1,18 @@
 import React from "react";
+import { QuestionData } from "../../types/Questions";
 
-const Progress: React.FC = () => {
+export type ProgressProps = {
+  progressQuizz: number
+  questions: QuestionData[]
+}
+
+const Progress: React.FC <ProgressProps> = ({progressQuizz, questions}) => {
+  const totalQuestions = questions?.length
   return (
     <div>
-        Progress Quiz
+      <p>{'Quizz ' + progressQuizz + ` /   ${totalQuestions}` }</p>
     </div>
   )
 }
-export default Progress
+
+export default Progress 

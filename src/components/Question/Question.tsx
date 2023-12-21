@@ -11,29 +11,28 @@ export type QuestionProps = {
 }
 
 const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
-
   const [selected, setSelected] = useState<string>('')
 
   const options = [data.correct_answer, ...data.incorrect_answers]
 
+  const shuffled = (options: string[]) => {
+    const disorder = [...options].sort(() => Math.random() - 0.5)
+    return disorder
+  }
+
+  const paco = shuffled([...options])
+
   const fourAnswers: options = {
-    "A": options[0],
-    "B": options[1],
-    "C": options[2],
-    "D": options[3]
+    "A": paco[0],
+    "B": paco[1],
+    "C": paco[2],
+    "D": paco[3]
   }
-
-  let answer = Object.entries(fourAnswers)
-
-  const shuffle = (answers: Array<[string, string]>) => {
-    answers.sort(() => Math.random() - 0.5)
-  }
-
-  shuffle(answer)
-
   const isChecked = (index: string): boolean => {
     return index === selected
   }
+
+  let answer = Object.entries(fourAnswers)
 
   return (
     <div>
@@ -47,9 +46,8 @@ const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
                 type="checkbox"
                 className="checkbox"
                 aria-label={index}
-                aria-checked={isChecked(index)}
                 checked={isChecked(index)}
-                onChange={(e) => setSelected(index)} />
+                onChange={() => setSelected(index)} />
             </p>
           </li>
         ))}
@@ -60,3 +58,5 @@ const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
 }
 
 export default Question
+
+

@@ -3,6 +3,8 @@ import "../Questionarie/questionarie.css"
 import Question from "../Question/Question"
 import getQuestions from "../../services/getQuestion"
 import { QuestionData } from "../../types/Questions"
+import Progress from "../Progress/Progress"
+import { useNavigate } from "react-router-dom"
 
 export type QuestionarieProps = {
   prompt?: string,
@@ -14,6 +16,7 @@ export type QuestionarieProps = {
 const Questionarie: React.FC<QuestionarieProps> = () => {
   const [retrieved, setRetrieved] = useState<boolean>(false)
   const [questions, setQuestions] = useState<QuestionData[]>([])
+  const [progressQuizz, setProgressQuizz] = useState<number>(1)
 
   useEffect(() => {
     retrieveQuestions()
@@ -21,24 +24,28 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
 
   useEffect(() => {
     setRetrieved(true)
-    console.log(retrieved)
   }, [questions])
+
+  const navigate = useNavigate()
 
   const retrieveQuestions = async () => {
     const result = await getQuestions()
-    console.log(result)
     setQuestions(result)
   }
 
   const handleClick = () => {
-    console.log("Next Quizz")
+    if (progressQuizz > 9){
+      navigate("/resultsReport")
+    }
+      setProgressQuizz(progressQuizz + 1)
   }
+
   const first = (): QuestionData => {
-    let result: QuestionData = questions[0]
+    let result: QuestionData = questions[progressQuizz - 1]
     if (!result) result = {
       question: '',
       correct_answer: '',
-      incorrect_answers:['','',''],
+      incorrect_answers: ['', '', ''],
     }
     return result
   }
@@ -48,6 +55,10 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
   return (
     <div className="questionarie">
       <h1 className="title">{title}</h1>
+      <Progress 
+      progressQuizz={progressQuizz}
+      questions={questions}
+      />
       <Question
         data={first()}
         handleClick={handleClick}
