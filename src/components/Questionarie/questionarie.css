@@ -39,3 +39,8 @@
    align-items: center;
    justify-content: center;
  }
+
+ .questionarie {
+   height: 600px;
+   width: 550px;
+ }

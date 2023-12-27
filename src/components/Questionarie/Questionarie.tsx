@@ -11,20 +11,17 @@ export type QuestionarieProps = {
   title?: string
   handleClick?: () => void
   disabled?: boolean
+  selected: number
 }
 
-const Questionarie: React.FC<QuestionarieProps> = () => {
-  const [retrieved, setRetrieved] = useState<boolean>(false)
+const Questionarie: React.FC<QuestionarieProps> = ({ selected }) => {
   const [questions, setQuestions] = useState<QuestionData[]>([])
   const [progressQuizz, setProgressQuizz] = useState<number>(1)
+  const [score, setScore] = useState<number>(0)
 
   useEffect(() => {
     retrieveQuestions()
   }, [])
-
-  useEffect(() => {
-    setRetrieved(true)
-  }, [questions])
 
   const navigate = useNavigate()
 
@@ -33,14 +30,17 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
     setQuestions(result)
   }
 
-  const handleClick = () => {
-    if (progressQuizz > 9){
+  const handleClick = (answer: string) => {
+    if (answer === current().correct_answer) setScore(score + 1)
+    if (progressQuizz > 9) {
       navigate("/resultsReport")
     }
-      setProgressQuizz(progressQuizz + 1)
+
+    setProgressQuizz(progressQuizz + 1)
+    console.log(score, answer);
   }
 
-  const first = (): QuestionData => {
+  const current = (): QuestionData => {
     let result: QuestionData = questions[progressQuizz - 1]
     if (!result) result = {
       question: '',
@@ -55,13 +55,13 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
   return (
     <div className="questionarie">
       <h1 className="title">{title}</h1>
-      <Progress 
-      progressQuizz={progressQuizz}
-      questions={questions}
-      />
       <Question
-        data={first()}
+        data={current()}
         handleClick={handleClick}
+      />
+      <Progress
+        progressQuizz={progressQuizz}
+        questions={questions}
       />
     </div>
   )

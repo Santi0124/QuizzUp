@@ -14,10 +14,10 @@ const App: React.FC = () => {
           element={<Start />} />
         <Route
           path="/questionaire"
-          element={<Questionarie />} />
-        <Route
+          element={<Questionarie selected={0} />} />
+        {/* <Route
           path="/resultsReport"
-          element={<ResultsReport/>} />
+          element={<ResultsReport/>} /> */}
       </Routes>
     </BrowserRouter>
   )

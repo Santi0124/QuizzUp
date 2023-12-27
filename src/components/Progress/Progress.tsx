@@ -1,5 +1,6 @@
 import React from "react";
 import { QuestionData } from "../../types/Questions";
+import "../Progress/progress.css"
 
 export type ProgressProps = {
   progressQuizz: number
@@ -7,10 +8,10 @@ export type ProgressProps = {
 }
 
 const Progress: React.FC <ProgressProps> = ({progressQuizz, questions}) => {
-  const totalQuestions = questions?.length
+  const totalQuestions = questions.length
   return (
-    <div>
-      <p>{'Quizz ' + progressQuizz + ` /   ${totalQuestions}` }</p>
+    <div className="progress">
+      <p>{progressQuizz + ` /   ${totalQuestions}` }</p>
     </div>
   )
 }

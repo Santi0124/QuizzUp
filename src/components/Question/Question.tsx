@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import "./question.css"
 import Send from "../ButtonSend/ButtonSend"
 import { QuestionData } from "../../types/Questions"
@@ -6,13 +6,16 @@ import { QuestionData } from "../../types/Questions"
 type options = Record<string, string>
 
 export type QuestionProps = {
-  handleClick?: () => void
+  handleClick: (answer: string) => void
   data: QuestionData
 }
 
 const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
   const [selected, setSelected] = useState<string>('')
 
+  useEffect(() => {
+    console.log(selected)
+  }, [selected])
   const options = [data.correct_answer, ...data.incorrect_answers]
 
   const shuffled = (options: string[]) => {
@@ -28,6 +31,11 @@ const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
     "C": paco[2],
     "D": paco[3]
   }
+
+  const sendResult = () => {
+    handleClick(fourAnswers[selected])
+  }
+
   const isChecked = (index: string): boolean => {
     return index === selected
   }
@@ -35,9 +43,9 @@ const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
   let answer = Object.entries(fourAnswers)
 
   return (
-    <div>
+    <div >
       <ul className="answers">
-        <h2>{data.question}</h2>
+        <h2 className="questionData">{data.question}</h2>
         {answer.map(([index, response]) => (
           <li key={index} className="answerBox">
             <p>
@@ -52,7 +60,7 @@ const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
           </li>
         ))}
       </ul>
-      <Send disabled={!selected} handleClick={handleClick} />
+      <Send disabled={!selected} handleClick={sendResult} />
     </div>
   )
 }
