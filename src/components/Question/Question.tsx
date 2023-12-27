@@ -34,6 +34,7 @@ const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
 
   const sendResult = () => {
     handleClick(fourAnswers[selected])
+    setSelected("")
   }
 
   const isChecked = (index: string): boolean => {
