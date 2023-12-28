@@ -4,26 +4,24 @@ import Question from "../Question/Question"
 import getQuestions from "../../services/getQuestion"
 import { QuestionData } from "../../types/Questions"
 import Progress from "../Progress/Progress"
-import { useNavigate } from "react-router-dom"
 
 export type QuestionarieProps = {
-  prompt?: string,
-  title?: string
-  handleClick?: () => void
-  disabled?: boolean
+  prompt: string,
+  title: string
+  handleClick: () => void
+  disabled: boolean
   selected: number
 }
 
-const Questionarie: React.FC<QuestionarieProps> = ({ selected }) => {
+const Questionarie: React.FC<QuestionarieProps> = () => {
   const [questions, setQuestions] = useState<QuestionData[]>([])
   const [progressQuizz, setProgressQuizz] = useState<number>(1)
   const [score, setScore] = useState<number>(0)
+  const [showResult, setShowResult] = useState<boolean>(false)
 
   useEffect(() => {
     retrieveQuestions()
   }, [])
-
-  const navigate = useNavigate()
 
   const retrieveQuestions = async () => {
     const result = await getQuestions()
@@ -33,11 +31,10 @@ const Questionarie: React.FC<QuestionarieProps> = ({ selected }) => {
   const handleClick = (answer: string) => {
     if (answer === current().correct_answer) setScore(score + 1)
     if (progressQuizz > 9) {
-      navigate("/resultsReport")
+      setShowResult(true)
+      setScore(score)
     }
-
     setProgressQuizz(progressQuizz + 1)
-    console.log(score, answer);
   }
 
   const current = (): QuestionData => {
@@ -54,18 +51,23 @@ const Questionarie: React.FC<QuestionarieProps> = ({ selected }) => {
 
   return (
     <div className="questionarie">
-      <h1 className="title">{title}</h1>
-      <Question
-        data={current()}
-        handleClick={handleClick}
-      />
-      <Progress
-        progressQuizz={progressQuizz}
-        questions={questions}
-      />
+      {showResult ? (
+        <h1 className="correctAnswer">Correct Answer : {score}</h1>
+      ) : (
+        <>
+          <h1 className="title">{title}</h1>
+          <Question
+            data={current()}
+            handleClick={handleClick} />
+          <Progress
+            progressQuizz={progressQuizz}
+            questions={questions} />
+        </>
+      )}
     </div>
   )
 }
+
 
 export default Questionarie
 
