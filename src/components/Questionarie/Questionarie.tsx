@@ -6,8 +6,8 @@ import { QuestionData } from "../../types/Questions"
 import Progress from "../Progress/Progress"
 
 export type QuestionarieProps = {
-  prompt?: string,
-  title?: string
+  prompt: string,
+  title: string
   handleClick: () => void
   disabled: boolean
   selected: number

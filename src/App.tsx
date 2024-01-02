@@ -14,9 +14,14 @@ const App: React.FC = () => {
             element={<Start />} />
           <Route
             path="/questionaire"
-            element={<Questionarie selected={0} handleClick={function (): void {
-              throw new Error('Function not implemented.')
-            } } disabled={false} />} />
+            element={<Questionarie
+              selected={0}
+              handleClick={() => { }}
+              disabled={false}
+              prompt={''}
+              title={''} />
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>

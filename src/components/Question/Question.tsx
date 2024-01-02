@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import "./question.css"
 import Send from "../ButtonSend/ButtonSend"
 import { QuestionData } from "../../types/Questions"
+import { i } from "vitest/dist/types-0373403c"
 
 type options = Record<string, string>
 
@@ -50,10 +51,19 @@ const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
 
   let answer = Object.entries(posibleAnswers)
 
+  const entities: Record<string, string> = {
+    "&#039;": "'",
+    "&quot;": '"',
+    "&ntilde;": "ñ",
+    "&eacute;": "é",
+    "&amp;": "&",
+    "&uuml;": "ü"
+  }
+
   return (
     <div >
       <ul className="answers">
-        <h2 className="questionData">{data.question}</h2>
+        <h2 className="questionData">{data.question.replace(/&#?\w+;/g, (match) => entities[match])}</h2>
         {answer.map(([index, response]) => (
           <li key={index} className="answerBox">
             <p>
