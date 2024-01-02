@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import React from "react"
 import Question from "../../src/components/Question/Question"
-
+import userEvent from '@testing-library/user-event'
 
 describe('Question', () => {
   it('renders four possible answers', () => {
@@ -31,16 +31,19 @@ describe('Question', () => {
     const checkboxItems = SUT.checkbox()
     expect(checkboxItems).toHaveLength(4)
   })
-  it.skip('When you can check and answer', () => {
-     SUT.render({
+  it('When you can check and answer', async () => {
+    SUT.render({
       question: "",
       correct_answer: "",
       incorrect_answers: ["", "", ""]
     })
     const secondAnswer = SUT.secondAnswer()
     expect(secondAnswer).not.toBeChecked()
-    fireEvent.click(secondAnswer)
-    expect(secondAnswer).toBeChecked()
+    userEvent.click(secondAnswer)
+    await waitFor(() => {
+      console.log("despues del click")
+      expect(secondAnswer).toBeChecked()
+    })
   })
 })
 

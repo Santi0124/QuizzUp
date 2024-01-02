@@ -6,8 +6,8 @@ import { QuestionData } from "../../types/Questions"
 import Progress from "../Progress/Progress"
 
 export type QuestionarieProps = {
-  prompt: string,
-  title: string
+  prompt?: string,
+  title?: string
   handleClick: () => void
   disabled: boolean
   selected: number
@@ -49,6 +49,7 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
 
   const title: string = 'Quizz'
 
+
   return (
     <div className="questionarie">
       {showResult ? (
@@ -56,7 +57,7 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
       ) : (
         <>
           <h1 className="title">{title}</h1>
-          <Question
+          <Question 
             data={current()}
             handleClick={handleClick} />
           <Progress

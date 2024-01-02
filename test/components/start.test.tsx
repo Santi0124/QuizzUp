@@ -1,28 +1,32 @@
-import { render, screen, fireEvent } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import React from "react"
 import Start from "../../src/components/Start/Start"
 import { vi } from "vitest"
 import { BrowserRouter, MemoryRouter } from "react-router-dom"
-
+import {userEvent} from "@testing-library/user-event"
 
 const spy = vi.fn()
 
-vi.mock('react-router-dom', () => ({
-  useNavigate: () => spy
-}))
+vi.mock('react-router-dom', () => {
+  const actual = vi.importActual('react-router-dom')
+  return {
+    ...actual,
+    useNavigate:() => spy
+  }
+})
 
 describe("Starting the quizz", () => {
 
-  it.skip("renders the start button", () => {
+  it("renders the start button", () => {
     SUT.render()
     const startButton = SUT.startButton()
     expect(startButton).toBeInTheDocument()
   })
 
-  it.skip("navigates to the questionnaire when the button is clicked",async() => {
+  it("navigates to the questionnaire when the button is clicked", async () => {
     SUT.render()
     const startButton = await SUT.startButton()
-    fireEvent.click(startButton)
+    userEvent.click(startButton)
     expect(spy).toHaveBeenCalledTimes(1)
   })
 })
@@ -36,7 +40,7 @@ class SUT {
     )
   }
   static startButton() {
-    return screen.findByRole("button", { name: "Start Test" })
+    return screen.getByRole("button", { name: "Start Test" })
   }
   static getQuestionnaireTitle() {
     return screen.getByText("Quizz")

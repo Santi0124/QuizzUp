@@ -11,7 +11,7 @@ const Progress: React.FC <ProgressProps> = ({progressQuizz, questions}) => {
   const totalQuestions = questions.length
   return (
     <div className="progress">
-      <p>{progressQuizz + ` /   ${totalQuestions}` }</p>
+       <h3>{progressQuizz} / {totalQuestions}</h3>
     </div>
   )
 }

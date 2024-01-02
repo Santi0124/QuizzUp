@@ -25,6 +25,7 @@ describe('Questionarie', () => {
     SUT.render()
     const title = SUT.title()
     expect(title).toBeInTheDocument()
+    
   })
 })
 

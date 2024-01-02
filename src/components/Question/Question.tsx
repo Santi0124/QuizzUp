@@ -12,36 +12,43 @@ export type QuestionProps = {
 
 const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
   const [selected, setSelected] = useState<string>('')
+  const [posibleAnswers, setposibleAnswers] = useState<options>({})
+
 
   useEffect(() => {
     console.log(selected)
   }, [selected])
-  const options = [data.correct_answer, ...data.incorrect_answers]
+
+  useEffect(() => {
+    const options = [data.correct_answer, ...data.incorrect_answers]
+    const paco = shuffled([...options])
+
+    const fourAnswers: options = {
+      "A": paco[0],
+      "B": paco[1],
+      "C": paco[2],
+      "D": paco[3]
+    }
+    setposibleAnswers(fourAnswers)
+  }, [data])
+
 
   const shuffled = (options: string[]) => {
-    const disorder = [...options].sort(() => Math.random() - 0.5)
+    const disorder = [...options].toSorted(() => Math.random() - 0.5)
     return disorder
   }
 
-  const paco = shuffled([...options])
-
-  const fourAnswers: options = {
-    "A": paco[0],
-    "B": paco[1],
-    "C": paco[2],
-    "D": paco[3]
-  }
 
   const sendResult = () => {
-    handleClick(fourAnswers[selected])
-     setSelected("")
+    handleClick(posibleAnswers[selected])
+    setSelected("")
   }
 
   const isChecked = (index: string): boolean => {
     return index === selected
   }
 
-  let answer = Object.entries(fourAnswers)
+  let answer = Object.entries(posibleAnswers)
 
   return (
     <div >
