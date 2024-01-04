@@ -18,6 +18,8 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
   const [progressQuizz, setProgressQuizz] = useState<number>(1)
   const [score, setScore] = useState<number>(0)
   const [showResult, setShowResult] = useState<boolean>(false)
+  const [solution, setSolution] = useState<string[]>(['', ''])
+
 
   useEffect(() => {
     retrieveQuestions()
@@ -33,6 +35,11 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
     if (progressQuizz > 9) {
       setShowResult(true)
       setScore(score)
+      setSolution([
+        current().correct_answer,
+        answer
+      ])
+
     }
     setProgressQuizz(progressQuizz + 1)
   }
@@ -46,6 +53,7 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
     }
     return result
   }
+  console.log(progressQuizz -5, solution[0]);
 
   const title: string = 'Quizz'
 
@@ -53,11 +61,16 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
   return (
     <div className="questionarie">
       {showResult ? (
-        <h1 className="correctAnswer">Correct Answer : {score}</h1>
+        <div>
+          <h1>Results</h1>
+          <h2>Question number : {progressQuizz - 1}</h2>
+          <p>Response true : {solution[0]}</p>
+          <p>Respuesta seleccionada : {solution[1]}</p>
+        </div>
       ) : (
         <>
           <h1 className="title">{title}</h1>
-          <Question 
+          <Question
             data={current()}
             handleClick={handleClick} />
           <Progress

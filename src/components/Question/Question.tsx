@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react"
 import "./question.css"
 import Send from "../ButtonSend/ButtonSend"
 import { QuestionData } from "../../types/Questions"
-import { i } from "vitest/dist/types-0373403c"
 
 type options = Record<string, string>
+
 
 export type QuestionProps = {
   handleClick: (answer: string) => void
@@ -14,7 +14,6 @@ export type QuestionProps = {
 const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
   const [selected, setSelected] = useState<string>('')
   const [posibleAnswers, setposibleAnswers] = useState<options>({})
-
 
   useEffect(() => {
     console.log(selected)
@@ -42,7 +41,7 @@ const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
 
   const sendResult = () => {
     handleClick(posibleAnswers[selected])
-    setSelected("")
+    // setSelected("")
   }
 
   const isChecked = (index: string): boolean => {
