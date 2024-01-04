@@ -3,3 +3,4 @@ export type QuestionData = {
   correct_answer: string,
   incorrect_answers: Array<string>
 }
+

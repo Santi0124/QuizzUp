@@ -4,7 +4,7 @@ import Send from "../ButtonSend/ButtonSend"
 import { QuestionData } from "../../types/Questions"
 
 type options = Record<string, string>
-
+type HTMLentities = Record<string, string>
 
 export type QuestionProps = {
   handleClick: (answer: string) => void
@@ -16,7 +16,6 @@ const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
   const [posibleAnswers, setposibleAnswers] = useState<options>({})
 
   useEffect(() => {
-    console.log(selected)
   }, [selected])
 
   useEffect(() => {
@@ -32,12 +31,10 @@ const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
     setposibleAnswers(fourAnswers)
   }, [data])
 
-
   const shuffled = (options: string[]) => {
     const disorder = [...options].sort(() => Math.random() - 0.5)
     return disorder
   }
-
 
   const sendResult = () => {
     handleClick(posibleAnswers[selected])
@@ -50,19 +47,21 @@ const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
 
   let answer = Object.entries(posibleAnswers)
 
-  const entities: Record<string, string> = {
-    "&#039;": "'",
-    "&quot;": '"',
-    "&ntilde;": "ñ",
-    "&eacute;": "é",
-    "&amp;": "&",
-    "&uuml;": "ü"
+  const replaceEntities = (question: string): string => {
+    const entities: HTMLentities = {
+      "&#039;": "'",
+      "&quot;": '"',
+      "&ntilde;": "ñ",
+      "&eacute;": "é",
+      "&amp;": "&",
+      "&uuml;": "ü"
+    }
+    return question.replace(/&#?\w+;/g, (match) => entities[match])
   }
-
   return (
     <div >
       <ul className="answers">
-        <h2 className="questionData">{data.question.replace(/&#?\w+;/g, (match) => entities[match])}</h2>
+        <h2 className="questionData">{replaceEntities(data.question)}</h2>
         {answer.map(([index, response]) => (
           <li key={index} className="answerBox">
             <p>

@@ -4,6 +4,7 @@ import Question from "../Question/Question"
 import getQuestions from "../../services/getQuestion"
 import { QuestionData } from "../../types/Questions"
 import Progress from "../Progress/Progress"
+import { FinalResults } from "../../types/Questionarie"
 
 export type QuestionarieProps = {
   prompt: string,
@@ -18,7 +19,7 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
   const [progressQuizz, setProgressQuizz] = useState<number>(1)
   const [score, setScore] = useState<number>(0)
   const [showResult, setShowResult] = useState<boolean>(false)
-  const [solution, setSolution] = useState<string[]>(['', ''])
+  const [solution, setSolution] = useState<Array<FinalResults>>([])
 
 
   useEffect(() => {
@@ -34,13 +35,13 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
     if (answer === current().correct_answer) setScore(score + 1)
     if (progressQuizz > 9) {
       setShowResult(true)
-      setScore(score)
-      setSolution([
-        current().correct_answer,
-        answer
-      ])
-
     }
+    setScore(score)
+    const results: FinalResults = { answer, correct_answer: current().correct_answer }
+    const newSolution: Array<FinalResults> = [...solution, results]
+    setSolution(newSolution)
+    console.log(solution);
+
     setProgressQuizz(progressQuizz + 1)
   }
 
@@ -53,7 +54,6 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
     }
     return result
   }
-  console.log(progressQuizz -5, solution[0]);
 
   const title: string = 'Quizz'
 
@@ -63,9 +63,6 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
       {showResult ? (
         <div>
           <h1>Results</h1>
-          <h2>Question number : {progressQuizz - 1}</h2>
-          <p>Response true : {solution[0]}</p>
-          <p>Respuesta seleccionada : {solution[1]}</p>
         </div>
       ) : (
         <>
