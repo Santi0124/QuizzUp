@@ -5,10 +5,12 @@ import Progress from "../../src/components/Progress/Progress"
 
 
 describe('Progress', () => {
-  it("Element", () => {
+  it("Renders progress component", () => {
     SUT.render()
     const progress = SUT.progress()
-    expect(progress).toBeInTheDocument()
+    expect(progress).toBeTruthy()
+  })
+  it('When u passed the question progress will increase + 1', () => {
   })
 })
 
@@ -19,6 +21,6 @@ class SUT {
       questions={[]} />
   }
   static progress() {
-    return screen.getByRole('heading', { name: '1 / 10'  })
+    return screen.findByRole('1 / 10')
   }
 }

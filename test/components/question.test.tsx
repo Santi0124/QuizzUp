@@ -41,7 +41,6 @@ describe('Question', () => {
     expect(secondAnswer).not.toBeChecked()
     userEvent.click(secondAnswer)
     await waitFor(() => {
-      console.log("despues del click")
       expect(secondAnswer).toBeChecked()
     })
   })

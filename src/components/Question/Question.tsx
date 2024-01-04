@@ -34,7 +34,7 @@ const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
 
 
   const shuffled = (options: string[]) => {
-    const disorder = [...options].toSorted(() => Math.random() - 0.5)
+    const disorder = [...options].sort(() => Math.random() - 0.5)
     return disorder
   }
 
