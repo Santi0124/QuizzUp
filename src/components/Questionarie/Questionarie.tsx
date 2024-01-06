@@ -5,6 +5,8 @@ import getQuestions from "../../services/getQuestion"
 import { QuestionData } from "../../types/Questions"
 import Progress from "../Progress/Progress"
 import { FinalResults } from "../../types/Questionarie"
+import Table from "../TableResults/TableResults"
+import "../TableResults/tableResults.css"
 
 export type QuestionarieProps = {
   prompt: string,
@@ -41,7 +43,6 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
     const newSolution: Array<FinalResults> = [...solution, results]
     setSolution(newSolution)
     console.log(solution);
-
     setProgressQuizz(progressQuizz + 1)
   }
 
@@ -62,7 +63,8 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
     <div className="questionarie">
       {showResult ? (
         <div>
-          <h1>Results</h1>
+          <h1>Table Results</h1>
+          <Table newSolution={solution} />
         </div>
       ) : (
         <>
