@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './start.css'
+import SelectorDifficulty from './Selectors/SelectorDifficulty'
 
 
 const Start: React.FC = () => {
@@ -13,6 +14,7 @@ const Start: React.FC = () => {
 
   return (
     <div className='Home'>
+      <SelectorDifficulty/>
       <button
         className='button'
         onClick={handleButtonClick}>
