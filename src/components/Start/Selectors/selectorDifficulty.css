@@ -1,4 +1,3 @@
-
 .containerParams {
   position: relative;
   width: 600px;
@@ -22,7 +21,7 @@
   background-color: #eaeaea;
 }
 
-.ddddddd {
+.dropdownList {
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -30,19 +29,18 @@
   width: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
-  display: none;
   border-radius: 5px;
 }
 
-.ddddddd li {
+.dropdownList li {
   padding: 10px;
   cursor: pointer;
 }
 
-.ddddddd li:hover {
+.dropdownList li:hover {
   background-color: #f1f1f1;
 }
 
-.containerParams:hover .ddddddd {
+.containerParams .dropdownList {
   display: block;
 }

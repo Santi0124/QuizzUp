@@ -1,24 +1,30 @@
-
 import React, { useState } from "react"
 import "./selectorDifficulty.css"
 
 const SelectorDifficulty: React.FC = () => {
-  const [isSelectorVisible, setIsSelectorVisible] = useState(false);
-  const difficulty: Array<string> = ['Any Difficulty', 'Easy', 'Medium', 'Hard'];
+  const [isSelectorVisible, setIsSelectorVisible] = useState<boolean>(false)
+  const [difficultyOptionSelected, isDifficultyOptionSelected] = useState<string>('Any Difficulty')
+  const difficultyOptions: Array<string> = ['Any Difficulty', 'Easy', 'Medium', 'Hard']
 
   const handleClick = () => {
-    setIsSelectorVisible(!isSelectorVisible)
+    setIsSelectorVisible(true)
+  }
+  const handleOptionSelect = (difficulty: string) => {
+    setIsSelectorVisible(false)
+    isDifficultyOptionSelected(difficulty)
   }
 
   return (
     <div className="containerParams">
       <button className="dropdownButton" onClick={handleClick}>
-        Selected Difficulty:
+        Selected Difficulty :  {difficultyOptionSelected}
       </button>
       {isSelectorVisible && (
-        <ul className="ddddddd">
-          {difficulty.map((difficulty, index) => (
-            <li key={index} className="items">
+        <ul className="dropdownList">
+          {difficultyOptions.map((difficulty, index) => (
+            <li key={index}
+              className="items"
+              onClick={() => handleOptionSelect(difficulty)}>
               {difficulty}
             </li>
           ))}
