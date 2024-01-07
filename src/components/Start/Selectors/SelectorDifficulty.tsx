@@ -3,7 +3,7 @@ import "./selectorDifficulty.css"
 
 const SelectorDifficulty: React.FC = () => {
   const [isSelectorVisible, setIsSelectorVisible] = useState<boolean>(false)
-  const [difficultyOptionSelected, isDifficultyOptionSelected] = useState<string>('Any Difficulty')
+  const [difficultyOptionSelected, isDifficultyOptionSelected] = useState<string>('')
   const difficultyOptions: Array<string> = ['Any Difficulty', 'Easy', 'Medium', 'Hard']
 
   const handleClick = () => {
@@ -17,7 +17,7 @@ const SelectorDifficulty: React.FC = () => {
   return (
     <div className="containerParams">
       <button className="dropdownButton" onClick={handleClick}>
-        Selected Difficulty :  {difficultyOptionSelected}
+      Selected Difficulty :{difficultyOptionSelected}
       </button>
       {isSelectorVisible && (
         <ul className="dropdownList">

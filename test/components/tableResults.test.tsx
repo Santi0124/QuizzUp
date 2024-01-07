@@ -7,16 +7,16 @@ describe('Table', () => {
   it('Render table', () => {
     SUT.render()
     const result = SUT.result()
-    expect(result).toBeTruthy()
+    expect(result).toBeInTheDocument()
   })
 })
 
 
 class SUT {
   static render() {
-    return <Table newSolution={[]} />
+    return render(<Table newSolution={[]} />)
   }
   static result() {
-    return screen.findByRole('table');
+    return screen.getByRole('table')
   }
 }
