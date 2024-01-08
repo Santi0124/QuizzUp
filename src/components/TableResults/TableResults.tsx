@@ -1,6 +1,7 @@
 import React from "react";
 import { FinalResults } from "../../types/Questionarie";
 import "../TableResults/tableResults.css"
+import ItemList from "../ItemList/ItemList";
 
 export type TableProps = {
   newSolution: FinalResults[]
@@ -20,9 +21,10 @@ const Table: React.FC<TableProps> = ({ newSolution }) => {
         <tbody>
           {newSolution.map((result, index) => (
             <tr >
-              <td key={index}>{index + 1}</td>
-              <td>{result.correct_answer}</td>
-              <td>{result.answer}</td>
+              <ItemList
+                questionNumber={index + 1}
+                questionAnswered={result.answer}
+                correctAnswer={result.correct_answer} />
             </tr>
           ))
           }

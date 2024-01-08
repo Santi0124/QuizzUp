@@ -6,7 +6,7 @@ import React from "react"
 describe("Selector", () => {
 
   beforeEach(() => {
-    render(<SelectorDifficulty />);
+    render(<SelectorDifficulty />)
   })
   
   it("Render selector options difficulty", async () => {
