@@ -1,24 +1,25 @@
 import React, { useState } from "react"
-import "./selectorDifficulty.css"
+import "./selectorCategory.css"
 
-const SelectorDifficulty: React.FC = () => {
+const SelectorCategory: React.FC = () => {
   const [isSelectorVisible, setIsSelectorVisible] = useState<boolean>(false)
   const [difficultyOptionSelected, isDifficultyOptionSelected] = useState<string>('')
-  const difficultyOptions: Array<string> = ['Any Difficulty', 'Easy', 'Medium', 'Hard']
+  const difficultyOptions: Array<string> = ['Historic', 'Politics', 'Geography', 'Sports']
 
   const handleClick = () => {
     setIsSelectorVisible(!isSelectorVisible)
   }
-  const handleOptionSelect = (difficulty: string) => {
+  const handleOptionSelect = (category: string) => {
     setIsSelectorVisible(false)
-    isDifficultyOptionSelected(difficulty)
+    isDifficultyOptionSelected(category)
   }
 
   return (
-    <div className="containerParams">
-      <button className="dropdownButton" 
-      onClick={handleClick}>
-      Selected Difficulty : {difficultyOptionSelected}
+    <div className="container">
+      <button 
+      className="dropdownButton"
+       onClick={handleClick}>
+      Selected Category :  {difficultyOptionSelected}
       </button>
       {isSelectorVisible && (
         <ul className="dropdownList">
@@ -35,4 +36,4 @@ const SelectorDifficulty: React.FC = () => {
   )
 }
 
-export default SelectorDifficulty
+export default SelectorCategory

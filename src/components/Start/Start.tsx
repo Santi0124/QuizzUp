@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './start.css'
 import SelectorDifficulty from './Selectors/SelectorDifficulty'
+import SelectorCategory from './Selectors/SelectorCategory'
 
 
 const Start: React.FC = () => {
@@ -14,7 +15,10 @@ const Start: React.FC = () => {
 
   return (
     <div className='Home'>
-      <SelectorDifficulty/>
+      <div className='Container'>
+        <span><SelectorDifficulty /></span>
+        <span><SelectorCategory /></span>
+      </div>
       <button
         className='button'
         onClick={handleButtonClick}>

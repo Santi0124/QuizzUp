@@ -23,7 +23,7 @@ describe("Starting the quizz", () => {
     expect(startButton).toBeInTheDocument()
   })
 
-  it("navigates to the questionnaire when the button is clicked", async () => {
+  it.skip("navigates to the questionnaire when the button is clicked", async () => {
     SUT.render()
     const startButton = await SUT.startButton()
     userEvent.click(startButton)

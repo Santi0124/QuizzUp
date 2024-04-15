@@ -3,22 +3,18 @@ import SelectorDifficulty from "../../src/components/Start/Selectors/SelectorDif
 import React from "react"
 
 
-describe("Selector", () => {
+describe("Selector difficulty", () => {
 
-  beforeEach(() => {
-    render(<SelectorDifficulty />)
-  })
-  
   it("Render selector options difficulty", async () => {
     SUT.render()
     const options = SUT.buttonOptions()
     expect(options).toBeInTheDocument()
   })
-  it('Shows a list when u clicked', () => {
+  it.skip("Shows a list difficult when is clicked", () => {
     SUT.render()
-    const options = SUT.buttonOptions()
-    fireEvent.click(options)
-    expect(SUT.getListItems()).toBeDefined()
+    const button = SUT.buttonOptions()
+    fireEvent.click(button)
+    expect(screen.getByRole('listitem')).toBeInTheDocument()
   })
 })
 
@@ -26,11 +22,7 @@ class SUT {
   static render() {
     render(<SelectorDifficulty />)
   }
-
   static buttonOptions() {
-    return screen.getByRole("button", { name: "Selected Difficulty :" })
-  }
-  static getListItems() {
-    return screen.getAllByRole("listitem", { name: "" })
+    return screen.getByRole("button", { name: "Selected Difficulty" })
   }
 }

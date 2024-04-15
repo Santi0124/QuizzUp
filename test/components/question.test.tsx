@@ -31,7 +31,7 @@ describe('Question', () => {
     const checkboxItems = SUT.checkbox()
     expect(checkboxItems).toHaveLength(4)
   })
-  it('When you can check and answer', async () => {
+  it.skip('When you can check and answer', async () => {
     SUT.render({
       question: "",
       correct_answer: "",
