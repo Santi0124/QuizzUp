@@ -1,7 +1,7 @@
 .send {
   font-size: 15px;
   padding: 6px 15px;
-  background-color: #6c3cba;
+  background-color: #d571ff;
   color: white;
   border: none;
   cursor: pointer;
@@ -12,8 +12,8 @@
 .sendDisabled {
   font-size: 15px;
   padding: 6px 15px;
-  background-color: #dac3fd;
-  color: white;
+  background-color: #fcf3ff;
+  color: rgb(24, 23, 23);
   border: none;
   cursor: pointer;
   border-radius: 25px;
