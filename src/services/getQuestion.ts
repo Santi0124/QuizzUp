@@ -2,13 +2,12 @@ import { QuestionData as QuestionData } from "../types/Questions"
 
 const apiUrl = "https://opentdb.com/api.php"
 
-
-async function getQuestions(): Promise<Array<QuestionData>> {
+async function getQuestions(difficulty: string): Promise<Array<QuestionData>> {
   const params = {
     question: "",
     amount: "10",
     category: "23",
-    difficulty: "hard",
+    difficulty: difficulty.toLowerCase(),
     type: "multiple",
   }
   const url = apiUrl + "?" + new URLSearchParams(params).toString()
@@ -22,5 +21,4 @@ async function getQuestions(): Promise<Array<QuestionData>> {
     return []
   }
 }
-
 export default getQuestions

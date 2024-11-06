@@ -1,9 +1,13 @@
 import React, { useState } from "react"
 import "./selectorDifficulty.css"
 
-const SelectorDifficulty: React.FC = () => {
+interface SelectorDifficultyProps {
+  handleDifficultySelect(selectedDifficulty: string): void;
+}
+
+const SelectorDifficulty: React.FC <SelectorDifficultyProps>= () => {
   const [isSelectorVisible, setIsSelectorVisible] = useState<boolean>(false)
-  const [difficultyOptionSelected, isDifficultyOptionSelected] = useState<string>('')
+  const [difficultyOptionSelected, setDifficultyOptionSelected] = useState<string>('')
   const difficultyOptions: Array<string> = ['Any Difficulty', 'Easy', 'Medium', 'Hard']
 
   const handleClick = () => {
@@ -11,17 +15,17 @@ const SelectorDifficulty: React.FC = () => {
   }
   const handleOptionSelect = (difficulty: string) => {
     setIsSelectorVisible(false)
-    isDifficultyOptionSelected(difficulty)
+    setDifficultyOptionSelected(difficulty)
   }
 
   return (
     <div className="containerParams">
-      <button className="dropdownButton" 
-      onClick={handleClick}>
-      Selected Difficulty : {difficultyOptionSelected}
+      <button className="dropdownButton"
+        onClick={handleClick}>
+        Selected Difficulty : {difficultyOptionSelected}
       </button>
       {isSelectorVisible && (
-        <ul className="dropdownList">
+        <ul className="dropdownListDifficulty">
           {difficultyOptions.map((difficulty, index) => (
             <li key={index}
               className="items"
@@ -36,3 +40,7 @@ const SelectorDifficulty: React.FC = () => {
 }
 
 export default SelectorDifficulty
+function onDifficultySelect(difficulty: string) {
+  throw new Error("Function not implemented.")
+}
+

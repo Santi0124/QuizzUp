@@ -19,7 +19,8 @@ const App: React.FC = () => {
               handleClick={() => { }}
               disabled={false}
               prompt={''}
-              title={''} />
+              title={''} 
+              difficulty=''/>
             }
           />
         </Routes>

@@ -22,7 +22,7 @@ const SelectorCategory: React.FC = () => {
       Selected Category :  {difficultyOptionSelected}
       </button>
       {isSelectorVisible && (
-        <ul className="dropdownList">
+        <ul className="dropdownListCategory">
           {difficultyOptions.map((difficulty, index) => (
             <li key={index}
               className="items"

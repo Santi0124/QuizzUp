@@ -1,39 +1,77 @@
 .containerParams, .container {
-  position: relative;
-  width: 250px;
-  height: 200px;
+  width: 450px;
+  height: 100px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
 }
 
 .dropdownButton {
-  width: 260px;
-  height: 30px;
+  width: 100%;
+  height: 50px;
   background-color: rgb(250, 250, 250);
   cursor: pointer;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 5px;
+  justify-content: space-between;
+  padding: 0 20px;
   border: 1px solid #ccc;
-  position: relative;
+  border-radius: 10px;
+  font-size: 18px;
+  text-align: left;
 }
 
 .dropdownButton:hover {
   background-color: #eaeaea;
 }
 
-.dropdownList {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+.dropdownButton:focus {
+  box-shadow: 0 0 0 2px #6c3cba;
 }
 
-.dropdownList li {
-  padding: 10px;
+.dropdownListCategory, .dropdownListDifficulty {
   cursor: pointer;
+  position: absolute; 
+  width: 25%;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
 }
 
-.dropdownList li:hover {
-  background-color: #f1f1f1;
+.dropdownListDifficulty {
+  top: 335px;
+  margin-top: 10px;
+}
+.dropdownListCategory {
+  top: 430px; 
+}
+
+.items {
+  padding: 12px 20px;
+  font-size: 16px;
+  color: #333;
+  background-color: transparent;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+  border-radius: 6px;
+  list-style-type: none;
+}
+
+.items:hover {
+  background-color: #f0f0f0;
+  color: #6c3cba;
+}
+
+.items.selected {
+  background-color: #6c3cba;
+  color: white;
+  font-weight: 600;
+}
+
+.items:active {
+  background-color: #ddd;
 }

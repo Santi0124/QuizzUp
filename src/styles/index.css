@@ -1,20 +1,24 @@
-html {
-  background-color: rgb(240, 212, 247);
-}
-
-
-header{
-  display: flex;
-  flex-direction: row;
-  align-content: space-between;
-  justify-content: space-between;
-  width: 60%;
-  height: 100px;
-  background-color: rgba(213, 188, 253, 0.456);
-}
-
-body {
-  font-family: Arial, sans-serif; 
-  margin: 0; 
-  padding: 0; 
-}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html {
+    background-color: #b616ff; 
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(255, 0, 34, 0.456); 
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    width: 60%;
+    height: 100px;
+    background-color: rgba(255, 0, 34, 0.8); 
+  }
+  

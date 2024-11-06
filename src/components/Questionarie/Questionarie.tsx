@@ -14,9 +14,10 @@ export type QuestionarieProps = {
   handleClick: () => void
   disabled: boolean
   selected: number
+  difficulty: string
 }
 
-const Questionarie: React.FC<QuestionarieProps> = () => {
+const Questionarie: React.FC<QuestionarieProps> = ({difficulty}) => {
   const [questions, setQuestions] = useState<QuestionData[]>([])
   const [progressQuizz, setProgressQuizz] = useState<number>(1)
   const [score, setScore] = useState<number>(0)
@@ -26,10 +27,10 @@ const Questionarie: React.FC<QuestionarieProps> = () => {
 
   useEffect(() => {
     retrieveQuestions()
-  }, [])
+  }, [difficulty])
 
   const retrieveQuestions = async () => {
-    const result = await getQuestions()
+    const result = await getQuestions(difficulty)
     setQuestions(result)
   }
 
