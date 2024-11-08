@@ -1,16 +1,16 @@
 
 .response {
-  padding: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;  
 }
 .answers {
   list-style-type: none;
 }
 
 .questionData{
-  word-wrap: break-word;
   height: 70px;
   font-size: 20px;
-  width: 100%;
 }
 
 .answerBox {
@@ -19,4 +19,13 @@
   position: relative;
   padding: 8px;
   margin-top: 10px;
+  font-size: 10px;
 }
+
+.checkbox{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-left: 30px;
+}
+

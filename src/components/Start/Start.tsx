@@ -1,24 +1,28 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import './start.css'
-import SelectorDifficulty from './Selectors/SelectorDifficulty'
-import SelectorCategory from './Selectors/SelectorCategory'
-import getQuestions from '../../services/getQuestion'
-
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './start.css';
+import SelectorDifficulty from './Selectors/SelectorDifficulty';
+import SelectorCategory from './Selectors/SelectorCategory';
 
 const Start: React.FC = () => {
-
   const [difficulty, setDifficulty] = useState<string>('easy')
+  const [category, setCategory] = useState <string>('Politics')
 
-  const handleDifficultySelect = async (selectedDifficulty: string) => {
+
+
+  const handleDifficultySelect = (selectedDifficulty: string) => {
     setDifficulty(selectedDifficulty)
   }
 
-  const navigate = useNavigate()
+  const handleCategorySelect = (SelectorCategory:string)=>{
+    setCategory(SelectorCategory)
+  }
+
+  const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    navigate("/questionaire", { state: { difficulty } })
-  }
+    navigate("/questionaire", { state: { difficulty, category }});
+  };
 
   return (
     <div className='Home'>
@@ -26,7 +30,7 @@ const Start: React.FC = () => {
         <h1 className='h1'>QuizUpp</h1>
         <div className='Container'>
           <span><SelectorDifficulty handleDifficultySelect={handleDifficultySelect} /></span>
-          <span><SelectorCategory /></span>
+          <span><SelectorCategory handleCategorySelect={handleCategorySelect}/></span>
         </div>
         <button
           className='button'
@@ -35,7 +39,7 @@ const Start: React.FC = () => {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default Start
+export default Start;

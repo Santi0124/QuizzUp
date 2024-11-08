@@ -1,32 +1,25 @@
-import React from 'react'
-import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom'
-import Start from './components/Start/Start'
-import Questionarie from './components/Questionarie/Questionarie'
-import "../src/styles/index.css"
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Start from './components/Start/Start';
+import Questionarie from './components/Questionarie/Questionarie';
+import "../src/styles/index.css";
 
 const App: React.FC = () => {
   return (
     <>
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route
             path="/"
             element={<Start />} />
           <Route
             path="/questionaire"
-            element={<Questionarie
-              selected={0}
-              handleClick={() => { }}
-              disabled={false}
-              prompt={''}
-              title={''} 
-              difficulty=''/>
-            }
+            element={<Questionarie difficulty={''} category={''} />}
           />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

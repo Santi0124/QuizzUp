@@ -20,13 +20,13 @@ const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
 
   useEffect(() => {
     const options = [data.correct_answer, ...data.incorrect_answers]
-    const paco = shuffled([...options])
+    const barajar = shuffled([...options])
 
     const fourAnswers: options = {
-      "A": paco[0],
-      "B": paco[1],
-      "C": paco[2],
-      "D": paco[3]
+      "A": barajar[0],
+      "B": barajar[1],
+      "C": barajar[2],
+      "D": barajar[3]
     }
     setposibleAnswers(fourAnswers)
   }, [data])
@@ -38,7 +38,7 @@ const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
 
   const sendResult = () => {
     handleClick(posibleAnswers[selected])
-    // setSelected("")
+    setSelected("")
   }
 
   const isChecked = (index: string): boolean => {
@@ -60,22 +60,25 @@ const Question: React.FC<QuestionProps> = ({ handleClick, data }) => {
   }
   return (
     <div >
-      <ul className="answers">
-        <h2 className="questionData">{replaceEntities(data.question)}</h2>
-        {answer.map(([index, response]) => (
-          <li key={index} className="answerBox">
-            <p>
-              <span className="response">{response}</span>
-              <input
-                type="checkbox"
-                className="checkbox"
-                aria-label={index}
-                checked={isChecked(index)}
-                onChange={() => setSelected(index)} />
-            </p>
-          </li>
-        ))}
-      </ul>
+      <div>
+        <ul className="answers">
+          <h2 className="questionData">{replaceEntities(data.question)}</h2>
+          {answer.map(([index, response]) => (
+            <li key={index} className="answerBox">
+              <p>
+                <span className="response">{response}</span>
+                <div className="checkbox">
+                  <input
+                    type="checkbox"
+                    aria-label={index}
+                    checked={isChecked(index)}
+                    onChange={() => setSelected(index)} />
+                </div>
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
       <Send disabled={!selected} handleClick={sendResult} />
     </div>
   )

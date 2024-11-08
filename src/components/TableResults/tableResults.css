@@ -1,3 +1,10 @@
+.viewResults {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh;
+  }
+
 .styled-table {
     border-collapse: collapse;
     margin: 25px;
