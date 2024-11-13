@@ -6,23 +6,33 @@ import SelectorCategory from './Selectors/SelectorCategory';
 
 const Start: React.FC = () => {
   const [difficulty, setDifficulty] = useState<string>('easy')
-  const [category, setCategory] = useState <string>('Politics')
-
-
+  const [category, setCategory] = useState<string>('Politics')
+  const [buttonDisabled, setButtonDisabled] = useState<boolean>(true)
 
   const handleDifficultySelect = (selectedDifficulty: string) => {
     setDifficulty(selectedDifficulty)
+    validateSelectors()
   }
 
-  const handleCategorySelect = (SelectorCategory:string)=>{
+  const handleCategorySelect = (SelectorCategory: string) => {
     setCategory(SelectorCategory)
+    validateSelectors()
   }
 
-  const navigate = useNavigate();
+  const validateSelectors = () => {
+    const chosenSelectores = difficulty === "" || category === ""
+    if (chosenSelectores) {
+      setButtonDisabled(true)
+    } else {
+      setButtonDisabled(false)
+    }
+  }
+
+  const navigate = useNavigate()
 
   const handleButtonClick = () => {
-    navigate("/questionaire", { state: { difficulty, category }});
-  };
+    navigate("/questionaire", { state: { difficulty, category } });
+  }
 
   return (
     <div className='Home'>
@@ -30,11 +40,13 @@ const Start: React.FC = () => {
         <h1 className='h1'>QuizUpp</h1>
         <div className='Container'>
           <span><SelectorDifficulty handleDifficultySelect={handleDifficultySelect} /></span>
-          <span><SelectorCategory handleCategorySelect={handleCategorySelect}/></span>
+          <span><SelectorCategory handleCategorySelect={handleCategorySelect} /></span>
         </div>
         <button
           className='button'
-          onClick={handleButtonClick}>
+          onClick={handleButtonClick}
+          disabled={buttonDisabled}
+        >
           Start Test
         </button>
       </div>
